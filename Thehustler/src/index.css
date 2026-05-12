@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* The Hustler Merchandise — Premium dark streetwear design system */
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;            /* #0D0D0D */
+    --surface: 0 0% 7%;               /* #111111 */
+    --surface-elevated: 0 0% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 16 100% 56%;            /* hustle orange */
+    --primary-foreground: 0 0% 5%;
+    --primary-glow: 25 100% 62%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 62%;
+
+    --accent: 16 100% 56%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 14%;
+    --ring: 16 100% 56%;
+
+    --radius: 1.25rem;
+
+    /* gradients */
+    --gradient-hero: radial-gradient(ellipse at top, hsl(16 100% 56% / 0.18), transparent 55%), radial-gradient(ellipse at bottom, hsl(0 0% 12%), hsl(0 0% 4%));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 9%), hsl(0 0% 5%));
+    --gradient-text: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 60%));
+
+    /* shadows */
+    --shadow-glow: 0 0 80px hsl(var(--primary) / 0.35);
+    --shadow-elevated: 0 30px 60px -20px hsl(0 0% 0% / 0.6);
+    --shadow-soft: 0 10px 30px -10px hsl(0 0% 0% / 0.5);
+
+    /* glass */
+    --glass-bg: hsl(0 0% 8% / 0.6);
+    --glass-border: hsl(0 0% 100% / 0.08);
+
+    --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: hsl(var(--background));
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.02em;
+  }
+  ::selection { background: hsl(var(--primary) / 0.3); color: hsl(var(--foreground)); }
+}
+
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+  }
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .grain::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.05; pointer-events: none; mix-blend-mode: overlay;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up { animation: fade-up 0.8s var(--transition-smooth) both; }
+  .animate-fade-in { animation: fade-in 0.6s ease-out both; }
+  .animate-marquee { animation: marquee 30s linear infinite; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
