@@ -11,19 +11,21 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
+    const AI_API_KEY = Deno.env.get("AI_API_KEY");
+    if (!AI_API_KEY) throw new Error("AI_API_KEY not configured");
 
     const fullPrompt = `Create a high-quality t-shirt print design for the ${side ?? "front"} of a t-shirt. Design: ${prompt}. The design should be on a transparent or plain white background, centered, suitable for printing on apparel. No t-shirt mockup, just the artwork itself.`;
 
-    const resp = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    // TODO: Replace with your preferred AI service (e.g., OpenAI, Anthropic, etc.)
+    // Update the endpoint and headers accordingly
+    const resp = await fetch("YOUR_AI_SERVICE_ENDPOINT", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${AI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash-image",
+        model: "your-model-name",
         messages: [{ role: "user", content: fullPrompt }],
         modalities: ["image", "text"],
       }),

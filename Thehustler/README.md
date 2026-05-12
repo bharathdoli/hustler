@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# The Hustler Merchandise
 
-TODO: Document your project here
+Custom streetwear and bulk merch platform.
